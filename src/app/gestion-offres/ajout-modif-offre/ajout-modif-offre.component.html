@@ -1,0 +1,140 @@
+
+
+<div class="form-group row">
+    <div class="row centered-form">
+    
+        <div class="panel panel-default">
+            
+                     <div class="panel-body">
+                    <form class="form-group">
+                        <div class="row">
+                            
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label >Offre*</label>
+                                    <input type="text" name="OffreDesignation" id="OffreDesignation" class="form-control input-sm" placeholder="Offre d'emploi"
+                                    [(ngModel)]="OffreDesignation">
+                                </div>
+                            </div>
+                            <!--<div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label >Lieu*</label>
+                                    <input type="text" name="LieuOffre" id="LieuOffre" class="form-control input-sm" placeholder="Lieu Offre"
+                                    [(ngModel)]="LieuOffre">
+                                </div>
+                            </div>-->
+
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group"> 
+                                    <label>Lieu*</label> 
+                                    <select class="form-control"   (change)="selectVille($event)">
+                                        <option value="" >----Choisir Ville----</option>
+                                        <option *ngFor="let ville of ListVille" value="{{ville.ville_Designation}}">{{ville.ville_Designation}}</option>
+                                         </select>
+                                              <span class="select-arrow">
+                                              </span>
+                                               
+                                     </div> 
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <!--<div class="form-group">
+                                    <label>Date expiration*</label>
+                                    <input type="text"
+                                    class="form-control" bsDatepicker [bsConfig]="{containerClass: 'theme-dark-blue'}" placeholder="Date expiration"
+                                    [(ngModel)]="DateExpiration">
+                                </div>-->
+                                <div class="form-group">
+                                    <label>Date expiration*</label>
+                                    <input class="ui input left icon" type="date"  id="DateExpiration" name="DateExpiration"
+                                       class="form-control date" onkeydown="return false"
+                                    [(ngModel)]="DateExpiration">
+                                    </div>    
+                            </div>
+
+                          
+
+                            <div class="col-xs-6 col-sm-6 col-md-6">	    			
+                                <div class="form-group">
+                                    <label>Postes Vancants*</label>
+                                    <input type="number" name="PostesVancants" id="PostesVancants" class="form-control input-sm" placeholder="Postes Vancants"
+                                    [(ngModel)]="PostesVancants" required>
+                                </div>
+                            </div>
+
+                            <!--<div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label>Type Emploi*</label>
+                                    <input type="text" name="TypeEmploi" id="TypeEmploi" class="form-control input-sm" placeholder="Type Emploi"
+                                    [(ngModel)]="TypeEmploi" required>
+                                </div>
+                            </div>-->
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group"> 
+                                    <label>Type Emploi*</label> 
+                                    <select class="form-control"    (change)="selectTypeEmploi($event)">
+                                        <option value="" >----Choisir Type Emploi----</option>
+                                        <option *ngFor="let emploi of ListTypeEmploi" value="{{emploi.emploiType_Id}}">{{emploi.emploiType_Designation}}</option>
+                                         </select>
+                                              <span class="select-arrow">
+                                              </span>
+                                               
+                                     </div> 
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-6">	    			
+                                <div class="form-group">
+                                    <label>Nombre Année Expérience*</label>
+                                    <input type="text" name="NbAnsExp" id="NbAnsExp" class="form-control input-sm" placeholder="Nombre Année Expérience"
+                                    [(ngModel)]="NbAnsExp" required>
+                                </div>
+                            </div>
+
+                            <!--<div class="col-xs-6 col-sm-6 col-md-6">	    			
+                                <div class="form-group">
+                                    <label>Niveau Etude*</label>
+                                    <input type="text" name="NiveauEtude" id="NiveauEtude" class="form-control input-sm" placeholder="Niveau Etude"
+                                    [(ngModel)]="NiveauEtude" required>
+                                </div>
+                            </div>-->
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group"> 
+                                    <label>Niveau Etude*</label> 
+                                    <select class="form-control select"    (change)="selectNiveauScolaire($event)">
+                                        <<option value="" >----Choisir Niveau Etude----</option>
+                                        <option *ngFor="let niveau of ListNiveauEtude" value="{{niveau.niveauScolaire_Id}}">{{niveau.niveauScolaire_Designation}}</option>
+                                         </select>
+                                              <span class="select-arrow">
+                                              </span>
+                                               
+                                     </div> 
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-6">	    			
+                                <div class="form-group">
+                                    <label>Exigence Emploi*</label>
+                                    <input type="text" name="ExigenceEmploi" id="ExigenceEmploi" class="form-control input-sm" placeholder="Exigence Emploi"
+                                    [(ngModel)]="ExigenceEmploi" required>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label>Description Emploi*</label>
+                                    <textarea type="text" name="DescriptionEmploi" id="DescriptionEmploi" class="form-control input-sm" placeholder="Description Emploi"
+                                    [(ngModel)]="DescriptionEmploi" required></textarea>
+                                </div>
+                            </div>
+                            
+                        </div>	
+                             
+                        
+                    
+                    </form>
+                </div>
+            </div>
+        </div>
+   
+</div>
+<button  (click)="addOffre()"  *ngIf="offre.IdOffre==0" style="margin-left: 80%;" class="btn btn-primary">Ajouter</button>
+<button (click)="updateOffre()"  *ngIf="offre.IdOffre!=0" style="margin-left: 80%;" class="btn btn-primary">Modifier</button>

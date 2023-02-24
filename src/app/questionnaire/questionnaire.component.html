@@ -1,0 +1,212 @@
+
+    <!-- PAGE CONTENT -->
+    <div class="page">
+                             
+        <!-- START BREADCRUMB -->
+        <ul class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">UI Kits</a></li>
+            <li class="active">UI Panels</li>
+        </ul>
+        <!-- END BREADCRUMB -->
+        
+        <!-- PAGE TITLE -->
+        <div class="page-title">                    
+            <h2><span class="fa fa-arrow-circle-o-left"></span> Questionnaire</h2>
+        </div>
+    <br>
+    <ul class="nav nav-tabs nav-fill" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" role="tab" aria-controls="tasks" aria-selected="true">Questionnaire</a>
+      </li>
+    </ul>
+  
+    <br>
+  
+    
+  
+  
+    <div >
+      <div >
+  
+        <div class="tab-content">
+          <div class="tab-pane fade active show" role="tabpanel" id="integrations">
+                      
+              <div  ng-repeat="question in ListQuestion track by $index  " >
+                <div >
+                  <button ng-click="deleteQuestion(question.ID_Question)" type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" ng-hide="question.ID_Type_Enquete==3"><span 
+                      aria-hidden="true">×</span></button>
+                  <div class="row align-items-center">
+  
+                    <div class="col">
+                      
+                         <div class="media-body ml-2">
+                          <span class="h6 mb-0 d-block" style="margin:10"> <img style="vertical-align:center;margin-bottom:10;" alt="Image" src="assets/img/icons/question11.png" /> Question  2</span>
+                          
+                          
+                          
+                          <div class="form-group row align-items-center">
+                           <div class="media-body ml-6" style="display:inline-block;">
+                            <div class="col">
+                              <input style="height:30" type="text"   placeholder="Question"      name="profile-first-name" class="form-control"
+                                required  />
+                                
+                            </div>
+                            </div>
+                            
+                            
+                          <div class="col-auto" >
+                           <label  style="display:inline-block;color: #6c757d;  font-size: .875rem;vertical-align: bottom;" >Coeffécient </label>
+                            
+                            <input style="display:inline-block;width:30%;vertical-align: top; " type="number" style="height:20;"    class="form-control"
+                              />
+                           
+                          <!-- <button class="btn btn-sm btn-danger" ng-click="deleteProposition(proposition.ID_Reponse)"> Supprimer</button> -->
+                          </div>
+                            
+                            
+                            
+                          </div>
+                          </div>
+                          
+                      
+                           
+                       <div class="form-group row align-items-right">
+  
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          <span  style="cursor:hand" class="badge" > 
+                          <img  title="Text" src="assets/img/icons/text.png"  /></span>&nbsp;
+                           <span  style="cursor:hand;" class="badge" >
+                           <img  title="Video" src="assets/img/icons/video.png"  />&nbsp;</span>
+                            <span  style="cursor:hand"  class="badge"  >
+                           <img  title="Date" src="assets/img/icons/date.png" />&nbsp;</span>
+                            <span  style="cursor:hand" class="badge" >
+                            <img   title="Choix Simple" src="assets/img/icons/on.png" />&nbsp;</span>
+                            <span   style="cursor:hand" class="badge"  >
+                           <img   title="Choix multiple" src="assets/img/icons/multicheck.png" />&nbsp;</span>
+  
+                      </div>
+                      <div class="form-group row align-items-right">
+  
+                         
+                         
+                           <div class="media-body ml-2" style="display:inline-block;">
+                          <div class="custom-control custom-checkbox custom-checkbox-switch">
+                          
+                              <input type="checkbox"  checked value="0" class="custom-control-input" >
+                               <input type="checkbox"   value="1"  class="custom-control-input" >
+                              <label class="custom-control-label" >Reponse Obligatoire</label>
+                          </div>
+                          </div>
+                         
+                         
+                          <!-- Durée Attente  -->
+                           <!-- <div class="media-body ml-2"> -->
+                           <!-- <div class="form-group row align-items-center" > -->
+                           <!-- <label style="display:inline-block;  vertical-align:bottom" id="dureeQuestionAttente{{question.ID_Question}}"></label> -->
+                           <!-- <output id="dureeAttente{{question.ID_Question}}" name="amount" for="RangeAttente{{question.ID_Question}}" ><span ng-if="question.DureeAttente  > 0" >Durée attente :{{question.DureeAttente /1000}} s</span> -->
+                           <!-- <span ng-if="question.DureeAttente  <1">Durée attente : max 60 s<span> -->
+                           <!-- </output> -->
+                           <!-- &nbsp; -->
+                           <!-- <input type="range"  id="RangeAttente{{question.ID_Question}}"   style="width:120; background-color:#05c5cf;" max="100" ng-value="( 100/ (60/(question.DureeAttente/1000)) )" -->
+                           <!-- oninput="changeDureeAttente(this.id)" ng-mouseleave="setDuree(question.ID_Question,1)"> <br> -->
+                          <!-- </div> -->
+                          <!-- </div> -->
+                          
+                          <!-- Durée Reponse -->
+                           <div class="media-body ml-2">
+                           <div class="form-group row align-items-center" >
+                           <label style="display:inline-block;  vertical-align:bottom" ></label>
+                           <!--<output id="duree{{question.ID_Question}}" name="amount" for="Range{{question.ID_Question}}" ><span ng-if="question.DureeQS  > 0" >Durée reponse :{{question.DureeQS /1000}} s</span>
+                           <span ng-if="question.DureeQS  <1" >Durée reponse : max 60 s<span>
+                           </output>-->
+                           &nbsp;
+                          <input type="range"     style="width:120; background-color:#05c5cf;" max="100"  >
+                        
+                           </div>
+                           </div>
+                         
+  
+                      </div>
+                      
+                      <div class="form-group row align-items-right">
+                          <div class="media-body ml-2"  ng-if="question.ID_TypeQS == 4">
+                           <div class="custom-control custom-checkbox custom-checkbox-switch">
+                              <input type="checkbox" class="custom-control-input" >
+                              <label class="custom-control-label" >Préparation</label>
+                           </div>
+                           
+                           
+                           
+                           </div>
+                           <div class="media-body ml-2"  ng-if="question.ID_TypeQS == 4">
+                           </div>
+                            <div class="media-body ml-2"  ng-if="question.ID_TypeQS == 4">
+                           </div>
+                           <div class="media-body ml-2"  ng-if="question.ID_TypeQS == 4">
+                           </div>
+  
+                      </div>
+                         
+  
+                      <div class="row align-items-center" >
+  
+                          <div class="media-body ml-6" style="display:inline-block;"  >
+                           <div class="col">
+                          <input type="text" style="height:30"  placeholder="Reponse"  class="form-control"  />
+                          </div>
+                          </div>
+                      
+                          
+                          
+                          
+                          <div class="col-auto">
+                           <label style="color: #6c757d;  font-size: .875rem;" >Barème</label>
+                            
+                            <input style="display:inline-block;width:30%;vertical-align: top; " type="number" style="height:20;"   class="form-control"/>
+                            
+                          &nbsp;&nbsp;<span style="cursor: pointer;font-size:23;color:#e83e8c" title="annuler" class="material-icons" >delete</span>
+                          
+                           
+                          <!-- <button class="btn btn-sm btn-danger" ng-click="deleteProposition(proposition.ID_Reponse)"> Supprimer</button> -->
+                          </div>
+                          <br>&nbsp;
+                      </div>
+                          
+                      <div class="d-flex align-items-left" >
+                      <button class="btn btn-round" data-toggle="modal">
+                      <i class="material-icons">add</i>
+                      </button>
+  
+                      </div>
+                          
+                        
+  
+                      </div>
+                    </div>
+                   
+  
+  
+                  </div>
+                </div>
+              
+          
+  
+  
+  
+            <div class="d-flex align-items-left">
+              <button class="btn btn-round" data-toggle="modal" >
+                <i class="material-icons">add</i>
+              </button>
+  
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  
+
+ </div>

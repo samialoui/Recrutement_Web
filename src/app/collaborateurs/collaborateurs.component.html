@@ -1,0 +1,121 @@
+
+            
+            <!-- PAGE CONTENT -->
+            <div class="page">
+                
+                <!-- START BREADCRUMB -->
+                <ul class="breadcrumb">
+                    <li><a href="#">Acceuil</a></li>
+                    <li class="active">Liste Utilisateurs</li>
+                </ul>
+                <!-- END BREADCRUMB -->
+                
+                <!-- PAGE TITLE -->
+                <div class="page-title">                    
+                    <h2><span class="fa fa-arrow-circle-o-left"></span>Liste Utilisateurs</h2>
+                </div>
+                <!-- END PAGE TITLE -->                
+                
+                <!-- PAGE CONTENT WRAPPER -->
+                <div class="page-content-wrap">
+                
+                    <!-- START RESPONSIVE TABLES -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                            <div class="panel panel-default">
+
+                                <div class="panel-body">
+                                    <p>Utilisez la recherche pour trouver des utilisateurs. Vous pouvez rechercher par : nom  prénom,  spécialité. Ou utilisez la recherche avancée.</p>
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="col-md-8">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <span class="fa fa-search"></span>
+                                                    </div>
+                                                    <input type="text" #recherche  class="form-control" placeholder="Qui cherches-vous?"/>
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-primary" (click)="filterFn(recherche)" >Chercher</button><!--(click)="filterFn(recherche)"-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-success btn-block" (click)="addClick()" data-toggle="modal" data-target="#iconPreview" ><span class="fa fa-plus"></span> Ajouter Nouveau Utilisateur</button> 
+                                            </div>
+                                        </div>
+                                    </form>                                    
+                                </div>
+                            </div>
+                              <div class="panel-body">
+                                   <div class="panel-body panel-body-table">
+
+                                
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-actions" >
+                                            <thead>
+                                                <tr>
+                                                  
+                                                    <th style="width:25% ;">Nom Collaborateur</th>
+                                                    <th style="width:25% ;">Spécialité</th>
+                                                    <th style="width:20% ;">Role</th>
+                                                    <th style="width:30% ;">actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>                                            
+                                                <tr id="trow_1" *ngFor="let data of ListCollaborateur | paginate: { itemsPerPage: 10, currentPage: p }">
+                                                  
+                                                    <td><img style="width: 40px;height: 40px; border-radius: 50px;" src="assets/images/Collaborateurs/{{data.user_Photo}}" alt=""> <strong style="margin-left: 20px;">{{data.user_Nom_Prenom}}</strong></td>
+                                                    <td>{{data.specialite_Designation}}</td>
+                                                    <td>{{data.role_Designation}}</td>
+                                                    <td>
+                                                        <button class="btn btn-default btn-rounded btn-sm" style="background-color: gainsboro"><span class="fa fa-pencil" style="color: green;"></span></button>
+                                                        <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>  
+                                    </div>                                
+                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                   </div>
+                              </div>
+                            </div>                                                
+
+                        </div>
+                    </div>
+                    <!-- END RESPONSIVE TABLES -->
+                    
+                <!-- END PAGE CONTENT WRAPPER -->                                    
+                </div>         
+            </div>            
+            <!-- END PAGE CONTENT -->
+    
+
+        <!-- MESSAGE BOX-->
+        <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+            <div class="mb-container">
+                <div class="mb-middle">
+                    <div class="mb-title"><span class="fa fa-times"></span> Remove <strong>Data</strong> ?</div>
+                    <div class="mb-content">
+                        <p>Are you sure you want to remove this row?</p>                    
+                        <p>Press Yes if you sure.</p>
+                    </div>
+                    <div class="mb-footer">
+                        <div class="pull-right">
+                            <button class="btn btn-success btn-lg mb-control-yes">Yes</button>
+                            <button class="btn btn-default btn-lg mb-control-close">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END MESSAGE BOX-->        
+        
+  
+  
+
+
+
+
+
+
