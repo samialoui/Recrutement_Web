@@ -8,8 +8,8 @@
                 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
                     <li><a href="#">Acceuil</a></li>
-                    <li><a href="#">Liste Utilisateurs</a></li>
-                    <li><a href="#">Ajout Utilisateur</a></li>
+                    <li><a href="#">Liste Candidats</a></li>
+                    <li><a href="#">Ajout Candidat</a></li>
                   
                 </ul>
                 <!-- END BREADCRUMB -->
@@ -23,7 +23,7 @@
                 <form class="form-horizontal"  action="form" autocomplete="off" novalidate #regularForm="ngForm" (ngSubmit)="OnSubmit(regularForm)"  >
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title"><strong>Ajouter Utilisateur</strong></h3>
+                                    <h3 class="panel-title"><strong>Ajouter Candidat</strong></h3>
                                     <!-- <ul class="panel-controls">
                                         <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                                     </ul> -->
@@ -83,9 +83,9 @@
                                                 <div class="col-md-9">                                            
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
-                                                        <input type="text" id="Adresse" name="Adresse" [(ngModel)]="Adresse" class="form-control" placeholder="saisie votre adresse..."/>
+                                                        <input type="text" id="Adresse" name="adress" [(ngModel)]="Adresse" #adress="ngModel" class="form-control" placeholder="saisie votre adresse..." required/>
                                                     </div>                                            
-                                                    <!-- <span class="help-block" style="color: red;" *ngIf="TelephoneValid">Numéro téléphone est obligatoire!</span> -->
+                                                     <span class="text-danger"  *ngIf="adress.invalid && isNotValid">Adresse est obligatoire!</span> 
                                                 </div>
                                             </div>   
                                            
@@ -121,6 +121,8 @@
                                                     <!-- <span class="help-block">photo est obligatoire</span> -->
                                                 </div>
                                             </div>
+
+                                           
                                             
                                         </div>
                                         <div class="col-md-6">
@@ -135,50 +137,32 @@
                                                     <!-- <span class="help-block" style="color: red;" *ngIf="CinValid">Cin est obligatoire!</span> -->
                                                 </div>
                                             </div>
-                                            <div class="form-group">                                        
-                                                <label class="col-md-3 control-label">Date De CIN</label>
-                                                <div class="col-md-9">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                                        <input type="text" id="DateCin"  #dateCin (change)="selectDateCin($event)"    class="form-control datepicker" value="2014-11-01">                                            
-                                                    </div>
-                                                    <!-- <span class="help-block" style="color: red;" *ngIf="DateCinValid">Date de cin obligatoire</span> -->
-                                                </div>
-                                            </div>
+                                           
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Identifiant</label>
+                                                <label class="col-md-3 control-label">Specialité</label>
                                                 <div class="col-md-9">                                            
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                        <input type="text" id="Login" name="login" [(ngModel)]="Login" #login="ngModel" placeholder="saisie identifiant..." class="form-control" required/>
+                                                        <input type="text" id="Specialite" name="specialite" [(ngModel)]="Specialite" #specialite="ngModel" placeholder="saisie identifiant..." class="form-control" required/>
                                                     </div>                                            
-                                                    <span class="text-danger"  *ngIf="login.invalid && isNotValid">Identifiant obligatoire!</span>
+                                                    <span class="text-danger"  *ngIf="specialite.invalid && isNotValid">Specialité obligatoire!</span>
                                                 </div>
                                             </div>
                                             
 
 
                                             <div class="form-group">                                        
-                                                <label class="col-md-3 control-label">Mot De Passe</label>
+                                                <label class="col-md-3 control-label">Nombre Expérience</label>
                                                 <div class="col-md-9 col-xs-12">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
-                                                        <input type="password" name="password" id="Password" [(ngModel)]="Password" #password="ngModel" placeholder="saisie mot de passe..." class="form-control" required/>
+                                                        <input type="number" name="nBExperience" id="NBExperience" [(ngModel)]="NBExperience" #nBExperience="ngModel" placeholder="saisie mot de passe..." class="form-control" required/>
                                                     </div>            
-                                                    <span class="text-danger"  *ngIf="password.invalid && isNotValid">Mot de passe obligatoire!</span>
+                                                    <span class="text-danger"  *ngIf="nBExperience.invalid && isNotValid">Nombre expérience obligatoire!</span>
                                                 </div>
                                             </div>
-                                            <div class="form-group">                                        
-                                                <label class="col-md-3 control-label">Confirme Mot De Passe</label>
-                                                <div class="col-md-9 col-xs-12">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
-                                                        <input type="password" name="passwordConfirm" [(ngModel)]="ConfirmPassword" id="ConfirmPassword" #passwordConfirm="ngModel" placeholder="saisie mot de passe" class="form-control" required/>
-                                                    </div>            
-                                                    <span class="text-danger"  *ngIf="passwordConfirm.invalid && isNotValid">Mot de passe confirm obligatoire!</span>
-                                                    <span class="text-danger" *ngIf="Password != ConfirmPassword ">Veillez saisir le même mot de passe!</span>
-                                                </div>
-                                            </div>
+
+                                           
                                            
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Email</label>
@@ -194,35 +178,33 @@
                                         
                                             
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Specialité</label>
+                                                <label class="col-md-3 control-label">Niveau Scolaire</label>
                                                 <div class="col-md-9">                                                                                            
-                                                    <select class="form-control" (change)="selectSpecialite($event)" name="specialite" #specialite="ngModel" [(ngModel)]="Specialite" required >
-                                                        <option value="" >----Choisir Spécialité----</option>
-                                                        <option *ngFor="let specialite of ListSpecialite" value="{{specialite.specialite_Id}}">{{specialite.specialite_Designation}}</option>
+                                                    <select class="form-control" (change)="selectNiveauScolaire($event)" name="niveauScolaire" #niveauScolaire="ngModel" [(ngModel)]="NiveauScolaire" required >
+                                                        <option value="" >----Choisir Niveau Scolaire----</option>
+                                                        <option *ngFor="let niveau of ListNiveauEtude" value="{{niveau.niveauScolaire_Id}}">{{niveau.niveauScolaire_Designation}}</option>
                                                         
                                                     </select>
-                                                    <span class="text-danger"  *ngIf="specialite.invalid && isNotValid">Spécialité est obligatoire!</span>
+                                                    <span class="text-danger"  *ngIf="niveauScolaire.invalid && isNotValid">Niveau Scolaire est obligatoire!</span>
                                                 </div>
                                             </div>
-                                            
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Role</label>
-                                                <div class="col-md-9">                                                                                            
-                                                    <select class="form-control" (change)="selectRole($event)" name="role" #role="ngModel" [(ngModel)]="RoleUser" required >
-                                                        <option value="" >----Choisir Role----</option>
-                                                        <option *ngFor="let role of ListRoleUser" value="{{role.role_Id}}">{{role.roleUser_Designation}}</option>
-                                                        
-                                                    </select>
-                                                    <span class="text-danger"  *ngIf="role.invalid && isNotValid">Role est obligatoire!</span>
+                                                <label class="col-md-3 control-label">Lettre Motivation</label>
+                                                <div class="col-md-9">                                                                                                                                       
+                                                    <input type="file" [(ngModel)]="LettreMotivation"  class="fileinput btn-primary"  name="LettreMotivation" id="LettreMotivation"  accept="image/*" (change)="handleLettreMotivationInput($any($event).target.files)" title="Parcourir le fichier"/>
+                                                    <!-- <span class="help-block">photo est obligatoire</span> -->
                                                 </div>
                                             </div>
-                                            <!--<div class="form-group">
-                                                <label class="col-md-3 control-label">Checkbox</label>
-                                                <div class="col-md-9">                                                                                                                                        
-                                                    <label class="check"><input type="checkbox" class="icheckbox" checked="checked"/> Checkbox title</label>
-                                                    <span class="help-block">Checkbox sample, easy to use</span>
+
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">CV</label>
+                                                <div class="col-md-9">                                                                                                                                      
+                                                    <input type="file" [(ngModel)]="CV"  class="fileinput btn-primary"  name="CV" id="CV"  accept="image/*" (change)="handleCVInput($any($event).target.files)" title="Parcourir le fichier"/>
+                                                    <!-- <span class="help-block">photo est obligatoire</span> -->
                                                 </div>
-                                            </div>-->
+                                            </div>
+                                          
+                                            
                                             
                                         </div>
                                         

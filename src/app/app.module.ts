@@ -12,7 +12,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InvitationCondidatsComponent } from './invitation-condidats/invitation-condidats.component';
 import { VideosComponent } from './videos/videos.component';
-import { CondidatsComponent } from './candidats/condidats.component';
 import { CollaborateursComponent } from './collaborateurs/collaborateurs.component';
 import { CommentaireComponent } from './commentaire/commentaire.component';
 import { RecrutementService} from './Services/recrutement.service';
@@ -31,6 +30,10 @@ import { RecrutementPartageeComponent } from './recrutement-partagee/recrutement
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { AjoutCollaborateurComponent } from './ajout-collaborateur/ajout-collaborateur.component';
 import { CollaborateurService } from './Services/collaborateur.service';
+import { AjoutModifCandidatComponent } from './Candidats/ajout-modif-candidat/ajout-modif-candidat.component';
+import { ListCandidatComponent } from './Candidats/list-candidat/list-candidat.component';
+import { CandidatService } from './Services/candidat.service';
+
 
 //import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
@@ -40,7 +43,7 @@ const routes: Routes = [
   {path:'Mes-Recrutements', component: MesRecrutementsComponent},
   {path:'Invitation-Condidats', component: InvitationCondidatsComponent},
   {path:'Videos', component: VideosComponent},
-  {path: 'Candidats', component: CondidatsComponent},
+  {path: 'Candidats', component: ListCandidatComponent},
   {path: 'Collaborateurs', component: CollaborateursComponent},
   {path:'Commentaires', component: CommentaireComponent},
   {path:'Fich-Entretient', component: GestionOffresComponent},
@@ -49,7 +52,8 @@ const routes: Routes = [
   {path:'Recrutement-non-traite', component: RecrutementNonTraiteComponent},
   {path:'Recrutement-partage', component: RecrutementPartageeComponent},
   {path:'Questionnaires', component: QuestionnaireComponent},
-  {path:'AjoutCollaborateur', component: AjoutCollaborateurComponent}
+  {path:'AjoutCollaborateur', component: AjoutCollaborateurComponent},
+  {path:'AjoutCandidat', component: AjoutModifCandidatComponent}
 
 
 
@@ -65,7 +69,6 @@ const routes: Routes = [
     DashboardComponent,
     InvitationCondidatsComponent,
     VideosComponent,
-    CondidatsComponent,
     CollaborateursComponent,
     CommentaireComponent,
     GestionOffresComponent,
@@ -77,7 +80,9 @@ const routes: Routes = [
     RecrutementNonTraiteComponent,
     RecrutementPartageeComponent,
     QuestionnaireComponent,
-    AjoutCollaborateurComponent
+    AjoutCollaborateurComponent,
+    AjoutModifCandidatComponent,
+    ListCandidatComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +100,8 @@ const routes: Routes = [
     
     RecrutementService,
     OffresService,
-    CollaborateurService
+    CollaborateurService,
+    CandidatService
     
 
   ],

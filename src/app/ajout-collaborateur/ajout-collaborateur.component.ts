@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CollaborateurService } from '../Services/collaborateur.service';
 import Swal from 'sweetalert2';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-ajout-collaborateur',
@@ -14,10 +15,10 @@ export class AjoutCollaborateurComponent implements OnInit {
   ListRoleUser : any;
   ListSpecialite : any;
   ListVille :any;
-
   Nom!:string;
   Prenom!:string;
   Telephone!:string;
+  Adresse!:string;
   Cin!:string;
   DateCin!:string;
   DateNaissance!:string;
@@ -27,27 +28,13 @@ export class AjoutCollaborateurComponent implements OnInit {
   Email!:string;
   NomPrenom!:string;
   Image!:string;
-
   Ville:string="";
   RoleUser:string="";
   Specialite:string="";
 
-  NomValid:boolean=false;
-  PrenomValid:boolean=false;
-  TelephoneValid:boolean=false;
-  CinValid:boolean=false;
-  DateCinValid:boolean=false;
-  DateNaissanceValid:boolean=false;
-  LoginValid:boolean=false;
-  PasswordValid:boolean=false;
-  ConfirmPasswordValid:boolean=false;
-  EmailValid:boolean=false;
-  NomPrenomValid:boolean=false;
-  VilleValid:boolean=false;
-  RoleUserValid:boolean=false;
-  Specialitevalid:boolean=false;
+
   IncorrectPassword:boolean=false;
-  
+  public isNotValid: boolean = false;
 
   
   constructor( private route: Router, private service:CollaborateurService ){}
@@ -66,6 +53,13 @@ export class AjoutCollaborateurComponent implements OnInit {
    }
    selectSpecialite(event:any){
     this.Specialite=event.target.value;
+   }
+
+   selectDateNaissance(valDate:any){
+    this.DateNaissance=valDate.target.value;
+   }
+   selectDateCin(valDate:any){
+    this.DateCin=valDate.target.value;
    }
   getRoleUserList(){
     this.service.getRoleUserList().subscribe(data =>{
@@ -103,105 +97,80 @@ export class AjoutCollaborateurComponent implements OnInit {
         reader.readAsDataURL(this.fileToUpload);
       }
 
-      OnSubmit(Nom:any,Prenom:any,NomPrenom:any,Telephone:any,Cin:any,DateCin:any,DateNaissance:any,Image:any,Login:any,Password:any,ConfirmPassword:any,Email:any){
+      OnSubmit(form:NgForm){
+
+        console.log(this.Cin);
+        if (form.valid) {
+
+            
+
+   
+              var val = {
+                User_Ident_Nom:this.Nom,
+                User_Ident_Prenom:this.Prenom,
+                User_Nom_Prenom:this.NomPrenom,
+                User_Tele:this.Telephone,
+                User_Adresse:this.Adresse  !=undefined  ? this.Adresse : "NULL",
+                User_Ident_Cin:this.Cin !=undefined  ? this.Cin : "NULL",
+                User_Ident_DteCin:this.DateCin !=undefined  ? this.DateCin : "1800-01-01",
+                User_Ident_DteNais:this.DateNaissance !=undefined  ? this.DateNaissance : "1800-01-01",
+                User_Login:this.Login,
+                User_Pwd:this.Password,
+                User_PwdConfirm:this.ConfirmPassword,
+                User_Email:this.Email,
+                User_IdentLieuNais:this.Ville !=""  ? this.Ville : "207",
+                User_Role:this.RoleUser,
+                User_Specialite:this.Specialite
+              };
+             
+      
+        this.service.addCollaborateur(val).subscribe( data =>{
+          var User ="";
+          if(this.RoleUser =="1")
+          User='Admin';
+          if(this.RoleUser =="2")
+          User='Evaluateur';
+          if(this.RoleUser =="4")
+          User='Chargé de recrutement';
+          var message = "Compte " +User+" créé avec succès";
+
+          Swal.fire('Succés...',message,'success');
         
-      if(Nom.value ==undefined || Nom.value ==""){
-       this.NomValid = true;
-       }else{
-        this.NomValid = false;
-       }
-       if(Prenom.value ==undefined || Prenom.value ==""){
-        this.PrenomValid = true;
-        }else{
-         this.PrenomValid = false;
-        }
-        if(NomPrenom.value ==undefined || NomPrenom.value ==""){
-          this.NomPrenomValid = true;
-          }else{
-           this.NomPrenomValid = false;
-          }
-        if(Telephone.value ==undefined || Telephone.value ==""){
-         this.TelephoneValid = true;
-         }else{
-         this.TelephoneValid = false;
-          }
-        if(Cin.value ==undefined || Cin.value ==""){
-          this.CinValid = true;
-          }else{
-           this.CinValid = false;
-          }
-          if(DateCin.value ==undefined || DateCin.value =="2014-11-01"){
-            this.DateCinValid = true;
-           }else{
-           this.DateCinValid = false;
-          }
-
-          if(DateNaissance.value ==undefined || DateNaissance.value =="2014-11-01"){
-            this.DateNaissanceValid = true;
-            }else{
-             this.DateNaissanceValid = false;
+            this.Nom= "";
+            this.Prenom= "";
+            this.NomPrenom= "";
+            this.Telephone= "";
+            this.Cin= "";
+            this.DateCin= "";
+            this.DateNaissance= "";
+            this.Login= "";
+            this.Password= "";
+            this.ConfirmPassword= "";
+            this.Email= "";
+            this.Ville="";
+            this.RoleUser="";
+            this.Specialite="";
+            this.Adresse="";
+            this.DateNaissance="";
+            this.DateCin="";
+            this.isNotValid = false;
+            if(this.Image !=undefined || this.Image !=""){
+            this.UploadFile();
             }
-            if(Login.value ==undefined || Login.value ==""){
-             this.LoginValid = true;
-             }else{
-              this.LoginValid = false;
-             }
-             if(Password.value ==undefined || Password.value ==""){
-               this.PasswordValid = true;
-               }else{
-                this.PasswordValid = false;
-               }
-             if(ConfirmPassword.value ==undefined || ConfirmPassword.value ==""){
-              this.ConfirmPasswordValid = true;
-              }else{
-              this.ConfirmPasswordValid = false;
-               }
-               if(ConfirmPassword.value != "" && ConfirmPassword.value != Password.value ){
-                this.IncorrectPassword = true;
-                }else{
-                this.IncorrectPassword = false;
-                 }
-
-             if(Email.value ==undefined || Email.value ==""){
-               this.EmailValid = true;
-               }else{
-                this.EmailValid = false;
-               }
-               if(this.Ville ==undefined || this.Ville ==""){
-                 this.VilleValid = true;
-                }else{
-                this.VilleValid = false;
-               }
-               if(this.RoleUser ==undefined || this.RoleUser ==""){
-                this.RoleUserValid = true;
-               }else{
-               this.RoleUserValid = false;
-              }
-              if(this.Specialite ==undefined || this.Specialite ==""){
-                this.Specialitevalid = true;
-               }else{
-               this.Specialitevalid = false;
-              }
-              
-              this.fileToUpload = this.fileToUpload != undefined ? this.fileToUpload : "C:/E-Recrutement/src/assets/images/users/no-image.jpg";
-        // ,Prenom.value,Note.value,Descript.value,Pays.value,this.fileToUpload
-        this.service.addCollaborateur(Nom.value,Prenom.value,NomPrenom.value,Telephone.value,Cin.value,DateCin.value,DateNaissance.value,Login.value,Password.value,ConfirmPassword.value,Email.value,this.Ville,this.RoleUser,this.Specialite,this.fileToUpload).subscribe( data =>{
-          Swal.fire('Succés...','Compte collaborateur créé avec succès','success');
-            Nom.value;
-            Prenom.value;
-            NomPrenom.value;
-            Telephone.value;
-            Cin.value;
-            DateCin.value;
-            DateNaissance.value;
-            Image.value;
-            Login.value;
-            Password.value;
-            ConfirmPassword.value;
-            Email.value;
-            this.imageUrl = "/assets/img/img.png";
-          }
-        );
-       }
-
+           
+          
+          } );
+        }else{
+          this.isNotValid = true;
+        }    
 }
+
+       UploadFile(){
+        this.service.UploadFile(this.fileToUpload).subscribe( data =>{
+            this.imageUrl = "/assets/img/img.png";
+          });
+       } 
+      
+     }
+
+

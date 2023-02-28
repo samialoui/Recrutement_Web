@@ -1,21 +1,19 @@
-
-
-         
+     
             <!-- PAGE CONTENT -->
             <div id="page">
                 
             
                 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Pages</a></li>
-                    <li class="active">Address Book</li>
+                    <li><a href="#">Acceuil</a></li>
+                    <li><a href="#">Liste Candidats</a></li>
+                    
                 </ul>
                 <!-- END BREADCRUMB -->                                                
                 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-users"></span> Address Book <small>139 contacts</small></h2>
+                    <h2><span class="fa fa-users"></span> Liste Candidats</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
                 
@@ -27,7 +25,7 @@
                             
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <p>Use search to find contacts. You can search by: name, address, phone. Or use the advanced search.</p>
+                                    <p>Utilisez la recherche pour trouver des candidats. Vous pouvez rechercher par : nom  prénom,  spécialité. Ou utilisez la recherche avancée.</p>
                                     <form class="form-horizontal">
                                         <div class="form-group">
                                             <div class="col-md-8">
@@ -37,12 +35,12 @@
                                                     </div>
                                                     <input type="text" class="form-control" placeholder="Who are you looking for?"/>
                                                     <div class="input-group-btn">
-                                                        <button class="btn btn-primary">Search</button>
+                                                        <button class="btn btn-primary">Recherche</button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <button class="btn btn-success btn-block"><span class="fa fa-plus"></span> Add new contact</button>
+                                                <button class="btn btn-success btn-block"(click)="addClick()"><span class="fa fa-plus"></span> Ajouter Nouveau Candidat</button>
                                             </div>
                                         </div>
                                     </form>                                    
@@ -58,16 +56,16 @@
 
                     
                     <div class="row" >
-                        <div class="col-md-3" *ngFor="let data of ListCollaborateur | paginate: { itemsPerPage: 8, currentPage: p }">
+                        <div class="col-md-3" *ngFor="let data of ListCandidat | paginate: { itemsPerPage: 8, currentPage: p }">
                             <!-- CONTACT ITEM -->
                             <div class="panel panel-default">
                                 <div class="panel-body profile">
                                     <div class="profile-image">
-                                        <img src="assets/images/Collaborateurs/{{data.user_Photo}}" width="100px" height="100px" alt="Nadia Ali"/>
+                                        <img src="assets/images/Candidats/{{data.candidat_Photo}}" width="100px" height="100px" alt="Nadia Ali"/>
                                     </div>
                                     <div class="profile-data">
-                                        <div class="profile-data-name">{{data.user_Nom_Prenom}}</div>
-                                        <div class="profile-data-title">{{data.specialite_Designation}}</div>
+                                        <div class="profile-data-name">{{data.candidat_Nom_Prenom}}</div>
+                                        <div class="profile-data-title">{{data.formationCandidat_Specialite}}</div>
                                     </div>
                                     <div class="profile-controls">
                                         <a href="#" class="profile-control-left"><span class="fa fa-info"></span></a>
@@ -76,9 +74,9 @@
                                 </div>                                
                                 <div class="panel-body">                                    
                                     <div class="contact-info">
-                                        <p><small>Mobile</small><br/>{{data.user_Tele}}</p>
-                                        <p><small>Email</small><br/>{{data.user_Email}}</p>
-                                        <p><small>Address</small><br/>{{data.lieu_Designation}}</p>                                   
+                                        <p><small>Mobile</small><br/>{{data.candidat_Tel}}</p>
+                                        <p><small>Email</small><br/>{{data.candidat_Mail}}</p>
+                                        <p><small>Adresse</small><br/>{{data.candidat_Adressse}}</p>                                   
                                     </div>
                                 </div>                                
                             </div>
@@ -109,10 +107,3 @@
             </div>            
             <!-- END PAGE CONTENT -->
         
-    
-
-
-
-
-
-
